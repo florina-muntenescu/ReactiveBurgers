@@ -40,32 +40,25 @@ public class BurgersViewModel {
     }
 
     @NonNull
-    public Observable<Meat> getCookedMeat() {
-        return getMeatObservable().filter(meat -> isMeatFresh(meat))
-                                  .map(meat -> cook(meat));
+    private Observable<Meat> getCookedMeat() {
+        return getMeatObservable().filter(Meat::isFresh)
+                .map(Meat::cook);
     }
 
     @NonNull
     public Observable<Burger> getBurger() {
         return Observable.zip(getBun(),
-                              getCookedMeat(),
-                              getTomatoSlice(),
-                              (bun, meat, tomato) -> makeBurger(bun, meat, tomato));
+                getCookedMeat(),
+                getTomatoSlice(),
+                this::makeBurger);
     }
 
     private Burger makeBurger(final Bun bun, final Meat meat, final TomatoSlice tomato) {
         return new Burger(bun, meat, tomato);
     }
 
-    public void meatAvailable() {
-        mMeatSubject.onNext(new Meat());
+    public void meatAvailable(final boolean isFresh) {
+        mMeatSubject.onNext(new Meat(isFresh));
     }
 
-    private boolean isMeatFresh(Meat meat) {
-        return true;
-    }
-
-    private Meat cook(Meat meat) {
-        return meat;
-    }
 }

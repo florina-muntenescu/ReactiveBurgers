@@ -17,7 +17,8 @@ public class Meat {
         return isFresh;
     }
 
-    public void cook() {
+    public Meat cook() {
         isCooked = true;
+        return this;
     }
 }
