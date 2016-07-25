@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ReactiveBurgers</string>
+    <string name="meat_available">Meat available</string>
 </resources>
