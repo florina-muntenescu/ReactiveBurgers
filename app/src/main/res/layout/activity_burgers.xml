@@ -18,29 +18,17 @@
 
     <LinearLayout
         android:id="@+id/tomato_slice_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal" />
+        style="@style/Stream" />
 
     <LinearLayout
         android:id="@+id/meat_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal" />
+        style="@style/Stream" />
 
     <LinearLayout
         android:id="@+id/bun_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal" />
+        style="@style/Stream" />
 
     <LinearLayout
         android:id="@+id/burger_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:orientation="horizontal" />
+        style="@style/Stream" />
 </LinearLayout>

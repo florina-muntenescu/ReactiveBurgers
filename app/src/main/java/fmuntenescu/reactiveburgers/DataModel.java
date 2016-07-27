@@ -11,12 +11,15 @@ import fmuntenescu.reactiveburgers.pojo.Bun;
 import fmuntenescu.reactiveburgers.pojo.Tomato;
 import fmuntenescu.reactiveburgers.pojo.TomatoSlice;
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Model for the data.
  */
 public class DataModel {
 
+    @NonNull
+    private static final String BUN_FILE = "/res/raw/buns.txt";
     @NonNull
     private static final List<Tomato> TOMATOES = new ArrayList<>(
             Arrays.asList(new Tomato(), new Tomato()));
@@ -28,9 +31,28 @@ public class DataModel {
                         .delay(3, TimeUnit.SECONDS));
     }
 
+    /**
+     * Generate buns based on the lines from the BUN_FILE.
+     *
+     * @return bun observable
+     */
     @NonNull
     public Observable<Bun> getBun() {
-        return Observable.never();
+        return getBunOccurenceFromFile()
+                .delay(2, TimeUnit.SECONDS)
+                .map(__ -> new Bun());
     }
 
+    /**
+     * @return observable containing the lines from the BUN_FILE.
+     */
+    @NonNull
+    private Observable<String> getBunOccurenceFromFile() {
+        return Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                FileDataReader.readFileByLine(BUN_FILE, subscriber);
+            }
+        });
+    }
 }
