@@ -16,7 +16,7 @@ public class Tomato {
 
     public Tomato() {
         // create a random number of slices for a tomato.
-        int slices = new Random().nextInt(4) + 1;
+        int slices = new Random().nextInt(2) + 1;
 
         mTomatoSlices = new ArrayList<>(slices);
         for (int i = 0; i < slices; i++) {

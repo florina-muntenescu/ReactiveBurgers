@@ -35,13 +35,13 @@ public class BurgersViewModel {
     }
 
     @NonNull
-    private Observable<Meat> getMeatObservable() {
+    public Observable<Meat> getMeat() {
         return mMeatSubject.asObservable();
     }
 
     @NonNull
     private Observable<Meat> getCookedMeat() {
-        return getMeatObservable().filter(Meat::isFresh)
+        return getMeat().filter(Meat::isFresh)
                 .map(Meat::cook);
     }
 
