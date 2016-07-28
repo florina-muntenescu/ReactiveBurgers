@@ -5,7 +5,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -19,8 +18,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
-import static android.view.ViewGroup.LayoutParams.*;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
+/**
+ * View that displays emissions of buns, meat, tomatoe slices and burgers.
+ * The view allows creating meat pieces by pressing a button.
+ */
 public class BurgersActivity extends AppCompatActivity {
 
     @Nullable
@@ -47,6 +50,7 @@ public class BurgersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_burgers);
 
         mViewModel = new BurgersViewModel(getDataModel());
+
         mTomatoSlicesLayout = (LinearLayout) findViewById(R.id.tomato_slice_layout);
         mMeatLayout = (LinearLayout) findViewById(R.id.meat_layout);
         mBunLayout = (LinearLayout) findViewById(R.id.bun_layout);
@@ -70,22 +74,22 @@ public class BurgersActivity extends AppCompatActivity {
     private void bind() {
         mSubscription = new CompositeSubscription();
 
-        mSubscription.add(mViewModel.getTomatoSlice()
+        mSubscription.add(mViewModel.getTomatoSliceStream()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::setTomatoSlice));
 
-        mSubscription.add(mViewModel.getBun()
+        mSubscription.add(mViewModel.getBunStream()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::setBun));
 
-        mSubscription.add(mViewModel.getMeat()
+        mSubscription.add(mViewModel.getMeatStream()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::setMeat));
 
-        mSubscription.add(mViewModel.getBurger()
+        mSubscription.add(mViewModel.getBurgerStream()
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::setBurger));
@@ -102,22 +106,27 @@ public class BurgersActivity extends AppCompatActivity {
 
     private void setTomatoSlice(@NonNull final TomatoSlice tomatoSlice) {
         assert mTomatoSlicesLayout != null;
+
         addImageToContainer(mTomatoSlicesLayout, R.drawable.tomatoe_cartoon);
     }
 
     private void setBun(@NonNull final Bun bun) {
         assert mBunLayout != null;
+
         addImageToContainer(mBunLayout, R.drawable.bun_white_bkgr);
     }
 
     private void setMeat(@NonNull final Meat meat) {
         assert mMeatLayout != null;
-        @DrawableRes int meatImg = meat.isFresh() ? R.drawable.meat_raw_fresh : R.drawable.meat_raw_old;
+
+        @DrawableRes int meatImg = meat.isFresh() ?
+                R.drawable.meat_raw_fresh : R.drawable.meat_raw_old;
         addImageToContainer(mMeatLayout, meatImg);
     }
 
     private void setBurger(@NonNull final Burger burger) {
         assert mBurgerLayout != null;
+
         addImageToContainer(mBurgerLayout, R.drawable.burger_cartoon);
     }
 
@@ -129,9 +138,11 @@ public class BurgersActivity extends AppCompatActivity {
         ImageView imageView = new ImageView(this);
         imageView.setImageResource(imageSource);
         container.addView(imageView, viewParams);
-
     }
 
+    /**
+     * Generate a new piece of meat with a random value of freshness.
+     */
     private void meatAvailable() {
         boolean isFresh = new Random().nextBoolean();
         mViewModel.meatAvailable(isFresh);

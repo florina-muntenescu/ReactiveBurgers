@@ -34,7 +34,7 @@ public class BurgersViewModelTest {
     public void getTomatoSlice_emits_whenDataModelEmits() {
         ArrangeBuilder builder = new ArrangeBuilder();
         TestSubscriber<TomatoSlice> testSubscriber = new TestSubscriber<>();
-        mViewModel.getTomatoSlice().subscribe(testSubscriber);
+        mViewModel.getTomatoSliceStream().subscribe(testSubscriber);
 
         builder.withTomatoSlice(TOMATOE_SLICE);
 
@@ -46,7 +46,7 @@ public class BurgersViewModelTest {
     public void getBun_emits_whenDataModelEmits() {
         ArrangeBuilder builder = new ArrangeBuilder();
         TestSubscriber<Bun> testSubscriber = new TestSubscriber<>();
-        mViewModel.getBun().subscribe(testSubscriber);
+        mViewModel.getBunStream().subscribe(testSubscriber);
 
         builder.withBun(BUN);
 
@@ -60,7 +60,7 @@ public class BurgersViewModelTest {
                 .withBun(BUN)
                 .withTomatoSlice(TOMATOE_SLICE);
         TestSubscriber<Burger> testSubscriber = new TestSubscriber<>();
-        mViewModel.getBurger().subscribe(testSubscriber);
+        mViewModel.getBurgerStream().subscribe(testSubscriber);
 
         mViewModel.meatAvailable(true);
 
@@ -73,7 +73,7 @@ public class BurgersViewModelTest {
                 .withBun(BUN)
                 .withTomatoSlice(TOMATOE_SLICE);
         TestSubscriber<Burger> testSubscriber = new TestSubscriber<>();
-        mViewModel.getBurger().subscribe(testSubscriber);
+        mViewModel.getBurgerStream().subscribe(testSubscriber);
 
         mViewModel.meatAvailable(false);
 
@@ -86,7 +86,7 @@ public class BurgersViewModelTest {
                 .withBun(BUN)
                 .withTomatoSlice(TOMATOE_SLICE);
         TestSubscriber<Burger> testSubscriber = new TestSubscriber<>();
-        mViewModel.getBurger().subscribe(testSubscriber);
+        mViewModel.getBurgerStream().subscribe(testSubscriber);
 
         testSubscriber.assertNoValues();
     }
@@ -98,7 +98,7 @@ public class BurgersViewModelTest {
                 .withTomatoSlice(TOMATOE_SLICE)
                 .withTomatoSlice(TOMATOE_SLICE);
         TestSubscriber<Burger> testSubscriber = new TestSubscriber<>();
-        mViewModel.getBurger().subscribe(testSubscriber);
+        mViewModel.getBurgerStream().subscribe(testSubscriber);
 
         mViewModel.meatAvailable(true);
 
@@ -111,8 +111,8 @@ public class BurgersViewModelTest {
         private BehaviorSubject<TomatoSlice> mTomatoSliceSubject = BehaviorSubject.create();
 
         public ArrangeBuilder() {
-            when(mDataModel.getBun()).thenReturn(mBunSubject);
-            when(mDataModel.getTomatoSlice()).thenReturn(mTomatoSliceSubject);
+            when(mDataModel.getBunStream()).thenReturn(mBunSubject);
+            when(mDataModel.getTomatoSliceStream()).thenReturn(mTomatoSliceSubject);
         }
 
         ArrangeBuilder withBun(Bun bun) {

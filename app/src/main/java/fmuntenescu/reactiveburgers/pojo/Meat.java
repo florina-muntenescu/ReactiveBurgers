@@ -1,7 +1,7 @@
 package fmuntenescu.reactiveburgers.pojo;
 
 /**
- * Model for the meat used to make a burger.
+ * Model for the meat used to make a burger with dummy implementation for cooking the meat.
  */
 public class Meat {
 
