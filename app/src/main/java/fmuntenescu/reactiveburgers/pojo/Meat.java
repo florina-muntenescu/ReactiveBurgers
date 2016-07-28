@@ -1,13 +1,13 @@
 package fmuntenescu.reactiveburgers.pojo;
 
+import android.support.annotation.NonNull;
+
 /**
  * Model for the meat used to make a burger with dummy implementation for cooking the meat.
  */
 public class Meat {
 
     private boolean isFresh;
-
-    private boolean isCooked = false;
 
     public Meat(final boolean isFresh) {
         this.isFresh = isFresh;
@@ -17,8 +17,9 @@ public class Meat {
         return isFresh;
     }
 
+    @NonNull
     public Meat cook() {
-        isCooked = true;
+        // dummy implementation
         return this;
     }
 }

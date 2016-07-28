@@ -8,13 +8,13 @@ import android.support.annotation.NonNull;
 public class Burger {
 
     @NonNull
-    private Bun mBun;
+    private final Bun mBun;
 
     @NonNull
-    private Meat mMeat;
+    private final Meat mMeat;
 
     @NonNull
-    private TomatoSlice mTomatoSlice;
+    private final TomatoSlice mTomatoSlice;
 
     public Burger(@NonNull final Bun bun,
                   @NonNull final Meat meat,

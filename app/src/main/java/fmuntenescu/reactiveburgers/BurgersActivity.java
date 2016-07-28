@@ -67,11 +67,13 @@ public class BurgersActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         unBind();
+        super.onPause();
     }
 
     private void bind() {
+        assert mViewModel != null;
+
         mSubscription = new CompositeSubscription();
 
         mSubscription.add(mViewModel.getTomatoSliceStream()
@@ -131,7 +133,7 @@ public class BurgersActivity extends AppCompatActivity {
     }
 
     private void addImageToContainer(@NonNull final LinearLayout container,
-                                     @NonNull @DrawableRes final int imageSource) {
+                                     @DrawableRes final int imageSource) {
 
         int width = getResources().getDimensionPixelSize(R.dimen.image_max_width);
         LinearLayout.LayoutParams viewParams = new LinearLayout.LayoutParams(width, WRAP_CONTENT);
@@ -144,6 +146,8 @@ public class BurgersActivity extends AppCompatActivity {
      * Generate a new piece of meat with a random value of freshness.
      */
     private void meatAvailable() {
+        assert mViewModel != null;
+
         boolean isFresh = new Random().nextBoolean();
         mViewModel.meatAvailable(isFresh);
     }

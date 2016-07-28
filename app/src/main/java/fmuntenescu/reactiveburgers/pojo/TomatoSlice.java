@@ -1,8 +1,7 @@
 package fmuntenescu.reactiveburgers.pojo;
 
 /**
- * Created by fmuntene on 16/07/16.
+ * Model for a slice of tomato
  */
-
 public class TomatoSlice {
 }

@@ -19,17 +19,17 @@ import rx.subjects.BehaviorSubject;
 public class BurgersViewModel {
 
     @NonNull
-    private DataModel mDataModel;
+    private final DataModel mDataModel;
 
     @NonNull
-    private BehaviorSubject<Meat> mMeatSubject = BehaviorSubject.create();
+    private final BehaviorSubject<Meat> mMeatSubject = BehaviorSubject.create();
 
     public BurgersViewModel(@NonNull final DataModel dataModel) {
         mDataModel = dataModel;
     }
 
     /**
-     * @return a stream of tomatoe slices
+     * @return a stream of tomato slices
      */
     @NonNull
     public Observable<TomatoSlice> getTomatoSliceStream() {
@@ -65,7 +65,7 @@ public class BurgersViewModel {
     }
 
     /**
-     * @return a stream of burgers created by zipping emmisions of the bun stream, cooked meat
+     * @return a stream of burgers created by zipping emissions of the bun stream, cooked meat
      * stream and tomato slices stream.
      */
     @NonNull

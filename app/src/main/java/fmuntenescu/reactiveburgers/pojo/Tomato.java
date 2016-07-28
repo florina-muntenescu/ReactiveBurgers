@@ -12,7 +12,7 @@ import java.util.Random;
 public class Tomato {
 
     @NonNull
-    private List<TomatoSlice> mTomatoSlices;
+    private final List<TomatoSlice> mTomatoSlices;
 
     public Tomato() {
         // create a random number of slices for a tomato.
@@ -26,6 +26,6 @@ public class Tomato {
 
     @NonNull
     public List<TomatoSlice> getTomatoSlices() {
-        return mTomatoSlices;
+        return new ArrayList<>(mTomatoSlices);
     }
 }

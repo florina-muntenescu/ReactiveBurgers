@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 public class BurgerApplication extends Application {
 
     @NonNull
-    private DataModel mDataModel;
+    private final DataModel mDataModel;
 
     public BurgerApplication() {
         mDataModel = new DataModel();
