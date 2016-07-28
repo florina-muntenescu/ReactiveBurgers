@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
  */
 public class Meat {
 
-    private boolean isFresh;
+    private final boolean isFresh;
 
     public Meat(final boolean isFresh) {
         this.isFresh = isFresh;

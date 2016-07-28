@@ -30,6 +30,7 @@ public final class FileDataReader {
                 if (inputStream == null) {
                     lineSubscriber.onError(new IllegalArgumentException(
                             "File not found on classpath: " + filename));
+                    return;
                 }
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,
