@@ -31,7 +31,7 @@ public class BurgersViewModelTest {
     }
 
     @Test
-    public void getTomatoSlice_emits_whenDataModelEmits() {
+    public void getTomatoSliceStream_emits_whenDataModelEmits() {
         ArrangeBuilder builder = new ArrangeBuilder();
         TestSubscriber<TomatoSlice> testSubscriber = new TestSubscriber<>();
         mViewModel.getTomatoSliceStream().subscribe(testSubscriber);
@@ -43,7 +43,7 @@ public class BurgersViewModelTest {
     }
 
     @Test
-    public void getBun_emits_whenDataModelEmits() {
+    public void getBunStream_emits_whenDataModelEmits() {
         ArrangeBuilder builder = new ArrangeBuilder();
         TestSubscriber<Bun> testSubscriber = new TestSubscriber<>();
         mViewModel.getBunStream().subscribe(testSubscriber);
@@ -55,7 +55,7 @@ public class BurgersViewModelTest {
     }
 
     @Test
-    public void getBurger_emits_whenBunTomatoSliceMeatFresh() {
+    public void getBurgerStream_emits_whenBunTomatoSliceMeatFresh() {
         new ArrangeBuilder()
                 .withBun(BUN)
                 .withTomatoSlice(TOMATOE_SLICE);
@@ -68,7 +68,7 @@ public class BurgersViewModelTest {
     }
 
     @Test
-    public void getBurger_doesNotEmit_whenMeatNotFresh() {
+    public void getBurgerStream_doesNotEmit_whenMeatNotFresh() {
         new ArrangeBuilder()
                 .withBun(BUN)
                 .withTomatoSlice(TOMATOE_SLICE);
@@ -81,7 +81,7 @@ public class BurgersViewModelTest {
     }
 
     @Test
-    public void getBurger_doesNotEmit_whenNoMeat() {
+    public void getBurgerStream_doesNotEmit_whenNoMeat() {
         new ArrangeBuilder()
                 .withBun(BUN)
                 .withTomatoSlice(TOMATOE_SLICE);
@@ -92,7 +92,7 @@ public class BurgersViewModelTest {
     }
 
     @Test
-    public void getBurger_emitsOnce_whenMultipleTomatoSlices() {
+    public void getBurgerStream_emitsOnce_whenMultipleTomatoSlices() {
         new ArrangeBuilder()
                 .withBun(BUN)
                 .withTomatoSlice(TOMATOE_SLICE)
