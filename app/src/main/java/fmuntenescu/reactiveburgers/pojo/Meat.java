@@ -1,6 +1,6 @@
 package fmuntenescu.reactiveburgers.pojo;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Model for the meat used to make a burger with dummy implementation for cooking the meat.
