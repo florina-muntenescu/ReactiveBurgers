@@ -1,6 +1,6 @@
 package fmuntenescu.reactiveburgers.pojo;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Model for a burger. A burger contains a bun, a piece of meat and a tomato slice.

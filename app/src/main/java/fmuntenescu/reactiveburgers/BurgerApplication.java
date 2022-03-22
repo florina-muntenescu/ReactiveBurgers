@@ -1,7 +1,7 @@
 package fmuntenescu.reactiveburgers;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Application class. Allows injection of the data model.
